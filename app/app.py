@@ -9,13 +9,11 @@ redis = Redis(host=REDIS_HOST, port=REDIS_PORT)
 
 app = Flask(__name__)
 
-METHODS = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS']
-
-@app.route('/ping', methods=METHODS)
+@app.route('/ping')
 def ping():
     return jsonify(status='ok')
 
-@app.route('/count', methods=METHODS)
+@app.route('/count')
 def count():
     redis.incr('count')
     count = str(redis.get('count'), 'utf-8')
