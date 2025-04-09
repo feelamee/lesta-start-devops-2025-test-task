@@ -4,14 +4,12 @@ WORKDIR /app
 
 ENV APP_VENV_DIR="/app/.env"
 RUN python -m venv "${APP_VENV_DIR}"
-ENV PATH="${APP_VENV_DIR}:${PATH}"
+ENV PATH="${APP_VENV_DIR}/bin:${PATH}"
 
 COPY app app
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r app/requirements.txt
-
-EXPOSE 5000
 
 CMD ["python", "app/app.py"]
 
